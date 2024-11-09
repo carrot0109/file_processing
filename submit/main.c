@@ -110,34 +110,29 @@ int eraseBST(Node** T, int key) {
         free(p);
     }
     else if (p->left == NULL || p->right == NULL) {      // one child
-        if (p->left != NULL) {      // left of child
-            if (q == NULL) {        // if p is root node
-                Node* l = p->left;      // copy
-                p->key = l->key;        // key move
-                eraseBST(&(p->left), p->key);       // delete  unuseful node
-            }
-            else if (q->left == p) q->left = p->left;
-            else q->right = p->left;
+        Node* c = NULL;
+        if (p->left != NULL) {
+            c = p->left;
         }
-        else if (p->right != NULL) {      // right of child
-            if (q == NULL) {        // if p is root node
-                Node* r = p->right;
-                p->key = r->key;
-                eraseBST(&(p->right), p->key);
-            }
-            else if (q->left == p) q->left = p->right;
-            else q->right = p->right;
+        else {
+            c = p->right;
         }
+            if (q == NULL) *T = c;      // move of child of p
+        else if (q->left == p) q->left = c;     // if (left == p) ==> move
+        else q->right = c;      // right ==> move
+        free(p);
     }
     else if (p->left != NULL && p->right != NULL) {     // two children
         Node* r = NULL;
         int flag = 0;       // var to decide to remove left or right node
 
         if (height(p->left) > height(p->right)) {
-            r = maxNode(p->left); flag = 0;
+            r = maxNode(p->left); 
+            flag = 0;
         }
         else if (height(p->left) < height(p->right)) {
-            r = minNode(p->right); flag = 1;
+            r = minNode(p->right); 
+            flag = 1;
         }
         else if (height(p->left) == height(p->right)) {
             if (size(p->left) >= size(p->right)) {
