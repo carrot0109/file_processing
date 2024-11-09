@@ -188,7 +188,7 @@ int main() {
         if (T == NULL)break;
     }
 
-    freeNode(T);
+    # freeNode(T);
 
     return 0;
 }
