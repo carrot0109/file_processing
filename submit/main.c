@@ -8,7 +8,7 @@
 #include <stdlib.h>     // alloc
 
 // Node structure
-typedef struct {
+typedef struct Node {
     int key;        // key
     int height;     // depth
     struct Node* left;      // left Node
