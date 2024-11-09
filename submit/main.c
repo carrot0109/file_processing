@@ -185,6 +185,7 @@ int main() {
                 inorder(T);
         }
         printf("\n");
+        if (T == NULL)break;
     }
 
     freeNode(T);
