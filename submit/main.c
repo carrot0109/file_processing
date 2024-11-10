@@ -1,8 +1,3 @@
-/*
-* Dummy file입니다.
-* 본인이 테스트하고 싶은 내용으로 변경 후 사용하세요.
-*/
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>      // input/print
 #include <stdlib.h>     // alloc
@@ -117,7 +112,7 @@ int eraseBST(Node** T, int key) {
         else {
             c = p->right;
         }
-            if (q == NULL) *T = c;      // move of child of p
+        if (q == NULL) *T = c;      // move of child of p
         else if (q->left == p) q->left = c;     // if (left == p) ==> move
         else q->right = c;      // right ==> move
         free(p);
@@ -177,23 +172,18 @@ int main() {
     while (i++ < 1000) {
         scanf(" %c%d", &ins, &key);
         if (ins == 'i') {
-            if (insertBST(&T, key)) {
+            if (insertBST(&T, key))     // insert
                 inorder(T);
-                printf("\n");
-                continue;
-            }
         }
         else if (ins == 'd') {
-            if (eraseBST(&T, key)) {
+            if (eraseBST(&T, key))      // delete
                 inorder(T);
-                printf("\n");
-                if (T == NULL)break;
-                continue;
-            }   
         }
+        printf("\n");
+        if (T == NULL)break;        // stop
     }
 
-    freeNode(T);
+    freeNode(T);        // free
 
     return 0;
 }
