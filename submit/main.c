@@ -103,7 +103,6 @@ int eraseBST(Node** T, int key) {
         else if (q->left == p) q->left = NULL;
         else q->right = NULL;
         free(p);
-        *T = NULL;
     }
     else if (p->left == NULL || p->right == NULL) {      // one child
         Node* c = NULL;
@@ -117,7 +116,6 @@ int eraseBST(Node** T, int key) {
         else if (q->left == p) q->left = c;     // if (left == p) ==> move
         else q->right = c;      // right ==> move
         free(p);
-        *T = NULL;
     }
     else if (p->left != NULL && p->right != NULL) {     // two children
         Node* r = NULL;
@@ -176,15 +174,12 @@ int main() {
         if (ins == 'i') {
             if (insertBST(&T, key))     // insert
                 inorder(T);
-            printf("\n");
-            continue;
         }
         else if (ins == 'd') {
             if (eraseBST(&T, key))      // delete
                 inorder(T);
-            printf("\n");
-            if(T != NULL) continue;
         }
+        printf("\n");
         if (T == NULL)break;        // stop
     }
 
