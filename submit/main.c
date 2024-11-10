@@ -174,12 +174,15 @@ int main() {
         if (ins == 'i') {
             if (insertBST(&T, key))     // insert
                 inorder(T);
+            printf("\n");
+            continue;
         }
         else if (ins == 'd') {
             if (eraseBST(&T, key))      // delete
                 inorder(T);
+            printf("\n");
+            if(T != NULL) continue;
         }
-        printf("\n");
         if (T == NULL)break;        // stop
     }
 
