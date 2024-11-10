@@ -177,15 +177,20 @@ int main() {
     while (i++ < 1000) {
         scanf(" %c%d", &ins, &key);
         if (ins == 'i') {
-            if (insertBST(&T, key))
+            if (insertBST(&T, key)) {
                 inorder(T);
+                printf("\n");
+                continue;
+            }
         }
         else if (ins == 'd') {
-            if (eraseBST(&T, key))
+            if (eraseBST(&T, key)) {
                 inorder(T);
+                printf("\n");
+                if (T == NULL)break;
+                continue;
+            }   
         }
-        printf("\n");
-        if (T == NULL)break;
     }
 
     freeNode(T);
