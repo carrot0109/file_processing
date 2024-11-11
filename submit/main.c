@@ -104,7 +104,7 @@ int eraseBST(Node** T, int key) {
         else q->right = NULL;
         free(p);
     }
-    else if (p->left == NULL || p->right == NULL) {      // one child
+    else if ((p->left == NULL || p->right == NULL) &&  !(p->left != NULL && p->right != NULL)) {      // one child
         Node* c = NULL;
         if (p->left != NULL) {
             c = p->left;
