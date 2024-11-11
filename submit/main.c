@@ -139,9 +139,9 @@ int eraseBST(Node** T, int key) {
             }
         }
 
-        p->key = r->key;        // key copy
+        if (p != NULL) p->key = r->key;        // key copy
         if (flag == 0) eraseBST(&(p->left), r->key);
-        else eraseBST(&(p->right), r->key);
+        else if (flag == 1) eraseBST(&(p->right), r->key);
     }
 
     return 1;
