@@ -12,10 +12,6 @@ typedef struct Node {
 
 Node* getNodeBST(int key) {
     Node* newNode = (Node*)malloc(sizeof(Node));    // alloc new Node
-    if (newNode == NULL) {
-        printf("Memory allocation failed for key %d", key);
-        return NULL;
-    }
     newNode->height = 1;        // depth initialization
     newNode->key = key;     // key initialization
     newNode->left = newNode->right = NULL;      // both of Node init
@@ -182,9 +178,9 @@ int main() {
         else if (ins == 'd') {
             if (eraseBST(&T, key))      // delete
                 inorder(T);
+            if (T == NULL)break;        // stop
         }
         printf("\n");
-        if (T == NULL)break;        // stop
     }
 
     freeNode(T);        // free
