@@ -104,17 +104,17 @@ int eraseBST(Node** T, int key) {
         else q->right = NULL;
         free(p);
     }
-    else if ((p->left == NULL || p->right == NULL) &&  !(p->left != NULL && p->right != NULL)) {      // one child
+    else if ((p->left == NULL || p->right == NULL)) {      // one child
         Node* c = NULL;
         if (p->left != NULL) {
             c = p->left;
         }
-        else {
+        else if (p->right != NULL) {
             c = p->right;
         }
         if (q == NULL) *T = c;      // move of child of p
         else if (q->left == p) q->left = c;     // if (left == p) ==> move
-        else q->right = c;      // right ==> move
+        else if (q->right == p) q->right = c;      // right ==> move
         free(p);
     }
     else if (p->left != NULL && p->right != NULL) {     // two children
