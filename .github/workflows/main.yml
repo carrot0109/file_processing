@@ -47,10 +47,14 @@ jobs:
 
             - name: Display test output files
               run: |
-                  echo "Displaying user_output_test_random00:"
-                  bash -c 'cat /Users/runner/work/file_processing/file_processing/output/__bstree/user_output_test_random00'
-                  echo "Displaying output_test_random00:"
-                  bash -c 'cat /Users/runner/work/file_processing/file_processing/output/__bstree/output_test_random00'
+                  echo "=== Diff user_output_test_random00 vs output_test_random00 ==="
+                  diff -u /Users/runner/work/file_processing/file_processing/output/__bstree/user_output_test_random00 /Users/runner/work/file_processing/file_processing/output/__bstree/output_test_random00 || echo "No differences found"
+                  
+                  echo "=== Content of user_output_test_random00 ==="
+                  cat /Users/runner/work/file_processing/file_processing/output/__bstree/user_output_test_random00 || echo "File not found"
+
+                  echo "=== Content of output_test_random00 ==="
+                  cat /Users/runner/work/file_processing/file_processing/output/__bstree/output_test_random00 || echo "File not found"
 
             - name: Upload deepthought
               uses: actions/upload-artifact@v3
