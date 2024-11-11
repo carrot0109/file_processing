@@ -12,6 +12,10 @@ typedef struct Node {
 
 Node* getNodeBST(int key) {
     Node* newNode = (Node*)malloc(sizeof(Node));    // alloc new Node
+    if (newNode == NULL) {
+        printf("Memory allocation failed for key %d", key);
+        return NULL;
+    }
     newNode->height = 1;        // depth initialization
     newNode->key = key;     // key initialization
     newNode->left = newNode->right = NULL;      // both of Node init
@@ -93,7 +97,7 @@ int eraseBST(Node** T, int key) {
     Node* p = searchBST(*T, key);        // child
     Node* q = searchParent(*T, key);     // parent
 
-    if (p == NULL) {
+    if (p == NULL || *T == NULL) {
         printf("d %d: The key does not exist", key);
         return 0;
     }
