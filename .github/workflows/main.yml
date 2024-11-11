@@ -45,6 +45,13 @@ jobs:
             - name: Run test
               run: bash grademe.sh
 
+            - name: Display test output files
+              run: |
+                  echo "Displaying user_output_test_random00:"
+                  bash -c 'cat /Users/runner/work/file_processing/file_processing/output/__bstree/user_output_test_random00'
+                  echo "Displaying output_test_random00:"
+                  bash -c 'cat /Users/runner/work/file_processing/file_processing/output/__bstree/output_test_random00'
+
             - name: Upload deepthought
               uses: actions/upload-artifact@v3
               with:
