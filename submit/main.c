@@ -73,7 +73,8 @@ Node* searchBST(Node* T, int key) {     // find node that has the key
     if (T == NULL) return NULL;
     if (key == T->key) return T;
     if (key < T->key) return searchBST(T->left, key);
-    else return searchBST(T->right, key);
+    if (key > T->key) return searchBST(T->right, key);
+    else return NULL;
 }
 
 Node* searchParent(Node* T, int key) {
@@ -102,7 +103,7 @@ int eraseBST(Node** T, int key) {
         if (q == NULL) *T = NULL;
         else if (q->left == p) q->left = NULL;
         else q->right = NULL;
-
+        free(p);
     }
     else if ((p->left == NULL || p->right == NULL)) {      // one child
         Node* c = NULL;
@@ -139,16 +140,8 @@ int eraseBST(Node** T, int key) {
         }
 
         p->key = r->key;        // key copy
-        if (flag == 0) {
-            int a = eraseBST(&(p->left), r->key);
-            if (a == 0)return 0;
-            else return 1;
-        }
-        else {
-            int b = eraseBST(&(p->right), r->key);
-            if (b == 0) return 0;
-            else return 1;
-        }
+        if (flag == 0) eraseBST(&(p->left), r->key);
+        else eraseBST(&(p->right), r->key);
     }
 
     return 1;
