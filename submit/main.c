@@ -176,9 +176,10 @@ int main() {
                 inorder(T);
         }
         else if (ins == 'd') {
-            if (eraseBST(&T, key))      // delete
+            if (eraseBST(&T, key)) {     // delete
                 inorder(T);
-            if (T == NULL)break;        // stop
+                if (T == NULL)break;        // stop
+            }
         }
         printf("\n");
     }
