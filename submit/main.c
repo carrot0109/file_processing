@@ -178,7 +178,10 @@ int main() {
         else if (ins == 'd') {
             if (eraseBST(&T, key)) {     // delete
                 inorder(T);
-                if (T == NULL)break;        // stop
+                if (T == NULL) { 
+                    printf("\n");
+                    break; 
+                }        // stop
             }
         }
         printf("\n");
