@@ -18,23 +18,23 @@ Node* getNodeBST(int key) {
     return newNode;     // return new Node
 }
 
-int insertBST(Node** T, int newkey) {
+int insertBST(Node** T, int key) {
     Node* q = NULL;     // parent Node
     Node* p = *T;       // child Node
 
     while (p != NULL) {     // stop if parent Node is NULL
-        if (newkey == p->key) {
-            printf("i %d: The key already exists\n", newkey);
+        if (key == p->key) {
+            printf("i %d: The key already exists", key);
             return 0;
         }
         q = p;      // new parent if key doesn't exist
-        if (newkey < p->key) p = p->left;      // if key is less than parent --> move left
+        if (key < p->key) p = p->left;      // if key is less than parent --> move left
         else p = p->right;      // equal
     }
 
-    Node* newNode = getNodeBST(newkey);        // newNode create   
+    Node* newNode = getNodeBST(key);        // newNode create   
     if (*T == NULL) *T = newNode;       // insert newNode into child
-    else if (newkey < q->key) q->left = newNode;
+    else if (key < q->key) q->left = newNode;
     else q->right = newNode;
 
     return 1;
@@ -89,12 +89,12 @@ Node* searchParent(Node* T, int key) {
     return q;
 }
 
-int eraseBST(Node** T, int newkey) {
-    Node* p = searchBST(*T, newkey);        // child
-    Node* q = searchParent(*T, newkey);     // parent
+int eraseBST(Node** T, int key) {
+    Node* p = searchBST(*T, key);        // child
+    Node* q = searchParent(*T, key);     // parent
 
-    if (p == NULL || *T == NULL) {
-        printf("d %d: The key does not exist\n", newkey);
+    if (p == NULL) {
+        printf("d %d: The key does not exist", key);
         return 0;
     }
 
@@ -122,11 +122,11 @@ int eraseBST(Node** T, int newkey) {
         int flag = 0;       // var to decide to remove left or right node
 
         if (height(p->left) > height(p->right)) {
-            r = maxNode(p->left); 
+            r = maxNode(p->left);
             flag = 0;
         }
         else if (height(p->left) < height(p->right)) {
-            r = minNode(p->right); 
+            r = minNode(p->right);
             flag = 1;
         }
         else if (height(p->left) == height(p->right)) {
@@ -172,21 +172,16 @@ int main() {
     while (i++ < 1000) {
         scanf(" %c%d", &ins, &key);
         if (ins == 'i') {
-            if (insertBST(&T, key)) {     // insert
+            if (insertBST(&T, key))     // insert success
                 inorder(T);
-                printf("\n");
-            }
         }
         else if (ins == 'd') {
-            if (eraseBST(&T, key)) {     // delete
+            if (eraseBST(&T, key)) {   // delete success
                 inorder(T);
-                printf("\n");
-                if (T == NULL) { 
-                    printf("\n");
-                    break; 
-                }        // stop
+                if (T == NULL) break;
             }
         }
+        printf("\n");
     }
 
     freeNode(T);        // free
