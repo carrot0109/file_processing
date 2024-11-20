@@ -181,7 +181,7 @@ int main() {
                 inorder(T);
                 if (T == NULL) {
                     printf("\n");
-                    continue;
+                    break;
                 }
             }
         }
