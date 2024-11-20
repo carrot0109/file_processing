@@ -90,13 +90,13 @@ Node* searchParent(Node* T, int key) {
     return q;
 }
 
-int eraseBST(Node** T, int key) {
+Node* eraseBST(Node** T, int key) {
     Node* p = searchBST(*T, key);        // child
     Node* q = searchParent(*T, key);     // parent
 
     if (p == NULL) {
         printf("d %d: The key does not exist", key);
-        return 0;
+        return q;
     }
 
     if (p->left == NULL && p->right == NULL) {      // leaf node
@@ -144,7 +144,7 @@ int eraseBST(Node** T, int key) {
         else if (flag == 1) eraseBST(&(p->right), r->key);
     }
 
-    return 1;
+    return *T;
 }
 
 void inorder(Node* T) {
@@ -184,12 +184,8 @@ int main() {
                 inorder(T);
         }
         else if (ins == 'd') {
-            if (eraseBST(&T, key)) {   // delete success
+            if (eraseBST(&T, key) != NULL) {   // delete success
                 inorder(T);
-                if (T == NULL) {
-                    printf("\n");
-                    break;
-                }
             }
         }
         else {
