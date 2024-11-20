@@ -181,9 +181,13 @@ int main() {
                 inorder(T);
                 if (T == NULL) {
                     printf("\n");
-                    break;
+                    continue;
                 }
             }
+        }
+        else {
+            printf(stderr, "Error: Invalid input '%c'. Please use 'i' for insert or 'd' for delete.\n", ins);
+            break;
         }
         printf("\n");
     }
