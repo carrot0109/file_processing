@@ -165,17 +165,10 @@ void freeNode(Node* T) {
     }
 }
 
-///////////////////////////////////////////////////////
-
-int insertAVL(Node** T, int newKey) {
-
-}
-
-///////////////////////////////////////////////////////
 
 int main() {
     char ins;
-    int key, i = 0;
+    int key = 0;
     Node* T = NULL;
 
     while (scanf(" %c %d", &ins, &key) == 2) {
