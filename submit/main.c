@@ -165,13 +165,20 @@ void freeNode(Node* T) {
     }
 }
 
+///////////////////////////////////////////////////////
+
+int insertAVL(Node** T, int newKey) {
+
+}
+
+///////////////////////////////////////////////////////
+
 int main() {
     char ins;
     int key, i = 0;
     Node* T = NULL;
 
-    while (i++ < 1000) {
-        scanf(" %c%d", &ins, &key);
+    while (scanf(" %c %d", &ins, &key) == 2) {
         if (ins == 'i') {
             if (insertBST(&T, key))     // insert success
                 inorder(T);
