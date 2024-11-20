@@ -96,7 +96,7 @@ Node* eraseBST(Node** T, int key) {
 
     if (p == NULL) {
         printf("d %d: The key does not exist", key);
-        return q;
+        return p;
     }
 
     if (p->left == NULL && p->right == NULL) {      // leaf node
